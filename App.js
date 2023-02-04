@@ -5,7 +5,7 @@ import Filter from './components/filter'
 
 export default function App() {
   return (
-    <Layout header = "ZotHome">
+    <Layout header = "ZotHome" footer = "Hello">
       <SafeAreaView style={styles.container}>
         <Text>Open up App.js to start lol on app yo!</Text>
         <Filter/>
