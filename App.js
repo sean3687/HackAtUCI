@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Card from './card'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import Layout from './components/Layout.jsx'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-      <Card/>
-    </View>
+    <Layout header = "ZotHome">
+      <SafeAreaView style={styles.container}>
+        <Text>Open up App.js to start lol on app yo!</Text>
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </Layout>
   );
 }
 
