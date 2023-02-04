@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { RadioButton } from "react-native-paper";
+import { RadioButton, Checkbox, DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+
 import store from "../redux/store";
 
 const filter = () => {
@@ -11,172 +12,255 @@ const filter = () => {
   const [max, setMax] = useState(10000);
   const [bed, setBed] = useState(10);
   const [bath, setBath] = useState(10);
+  const [community, setCommunity] = useState(
+    store.getState().filterReducer[0].community
+  );
 
+const handleCheckbox = () => {};
+const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#4f9deb',
+      accent: '#f1c40f',
+    },
+  };
 
+  useEffect(() => {
+    setCommunity(store.getState().filterReducer[0].community);
 
-
-
-
-
+    const updateCommunityCheckbox = () => {
+      store.dispatch({ type: "updateCommunityCheckbox", payload: [] });
+    };
+  });
 
   return (
-    <View>
-      <Text>filter</Text>
+    <PaperProvider theme={theme}>
+      <Text>filter </Text>
       <TouchableOpacity onPress={() => setShowFilterOptions(true)}>
         <Text style={styles.button}>Open Filter</Text>
       </TouchableOpacity>
+      
       <Modal
         transparent={true}
         style={styles.modal}
         visible={showFilterOptions}
         animationType="slide"
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Filter</Text>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => setShowFilterOptions(false)}
-            >
-              <MaterialIcons name="close" color="#2a2a33" size={22} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.border}></View>
-          <View style={styles.contentContainer}>
-            <View style={styles.price}>
-              <View style={styles.price_min}>
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                  Price Minimum
-                </Text>
-                <Picker
-                  selectedValue={min}
-                  onValueChange={(min) => {
-                    setMin(min);
-                    console.log(min);
-                  }}
-                  style={{ width: 160, postion: "absolute", fontSize: 10 }}
-                  mode="dropdown"
-                  itemStyle={{
-                    color: "red",
-                    fontWeight: "900",
-                    fontSize: 18,
-                    padding: 30,
-                  }}
-                >
-                  <Picker.Item label="No Min" value="0" />
-                  <Picker.Item label="$200" value="200" />
-                  <Picker.Item label="$400" value="400" />
-                  <Picker.Item label="$600" value="800" />
-                  <Picker.Item label="$800" value="800" />
-                  <Picker.Item label="$1000" value="1000" />
-                </Picker>
-              </View>
-              <View style={styles.price_max}>
-                <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                  Price Maximum
-                </Text>
-                <Picker
-                  selectedValue={max}
-                  onValueChange={(max) => {
-                    setMax(max);
-                    console.log(max);
-                  }}
-                  style={{ width: 160, postion: "absolute", fontSize: 10 }}
-                  mode="dropdown"
-                  itemStyle={{
-                    color: "red",
-                    fontWeight: "900",
-                    fontSize: 18,
-                    padding: 30,
-                  }}
-                >
-                  <Picker.Item label="No Max" value="10000" />
-                  <Picker.Item label="$1200" value="1200" />
-                  <Picker.Item label="$1400" value="1400" />
-                  <Picker.Item label="$1600" value="1600" />
-                  <Picker.Item label="$1800" value="1800" />
-                  <Picker.Item label="$2000" value="2000" />
-                  <Picker.Item label="$2200" value="2200" />
-                </Picker>
-              </View>
-            </View>
-            <View style={styles.bed}>
-              <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 15 }}>
-                Beds
-              </Text>
-              <RadioButton.Group
-                onValueChange={(value) => setBed(value)}
-                value={bed}
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>Filter</Text>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => setShowFilterOptions(false)}
               >
-                <View style={{ flexDirection: "row" }}>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>Any</Text>
-                    <RadioButton value="Any" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>1+</Text>
-                    <RadioButton value="1" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>2+</Text>
-                    <RadioButton value="2" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>3+</Text>
-                    <RadioButton value="3" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>4+</Text>
-                    <RadioButton value="4" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>5+</Text>
-                    <RadioButton value="5" />
-                  </View>
-                </View>
-              </RadioButton.Group>
+                <MaterialIcons name="close" color="#2a2a33" size={22} />
+              </TouchableOpacity>
             </View>
+            <View style={styles.border}></View>
+            <View style={styles.contentContainer}>
+              <View style={styles.price}>
+                <View style={styles.price_min}>
+                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                    Price Minimum
+                  </Text>
+                  <Picker
+                    
+                    selectedValue={min}
+                    onValueChange={(min) => {
+                      setMin(min);
+                      console.log(min);
+                    }}
+                    style={{ width: 160, postion: "absolute", fontSize: 10 }}
+                    mode="dropdown"
+                    itemStyle={{
+                      color: "red",
+                      fontWeight: "900",
+                      fontSize: 18,
+                      padding: 30,
+                    }}
+                  >
+                    <Picker.Item style ={{fontSize:15}} label="No Min" value="0" />
+                    <Picker.Item label="$200" value="200" />
+                    <Picker.Item label="$400" value="400" />
+                    <Picker.Item label="$600" value="800" />
+                    <Picker.Item label="$800" value="800" />
+                    <Picker.Item label="$1000" value="1000" />
+                  </Picker>
+                </View>
+                <View style={styles.price_max}>
+                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                    Price Maximum
+                  </Text>
+                  <Picker
+                    selectedValue={max}
+                    onValueChange={(max) => {
+                      setMax(max);
+                      console.log(max);
+                    }}
+                    style={{ width: 160, postion: "absolute", fontSize: 10 }}
+                    mode="dropdown"
+                    itemStyle={{
+                      color: "red",
+                      fontWeight: "900",
+                      fontSize: 18,
+                      padding: 30,
+                    }}
+                  >
+                    <Picker.Item label="No Max" value="10000" />
+                    <Picker.Item label="$1200" value="1200" />
+                    <Picker.Item label="$1400" value="1400" />
+                    <Picker.Item label="$1600" value="1600" />
+                    <Picker.Item label="$1800" value="1800" />
+                    <Picker.Item label="$2000" value="2000" />
+                    <Picker.Item label="$2200" value="2200" />
+                  </Picker>
+                </View>
+              </View>
+              <View style={styles.bed}>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "bold",}}
+                >
+                  Beds
+                </Text>
+                <RadioButton.Group
+                  onValueChange={(value) => setBed(value)}
+                  value={bed}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>Any</Text>
+                      <RadioButton value="Any" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>1+</Text>
+                      <RadioButton value="1" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>1.5+</Text>
+                      <RadioButton value="1.5" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>2+</Text>
+                      <RadioButton value="2" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>3+</Text>
+                      <RadioButton value="3" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>4+</Text>
+                      <RadioButton value="4" />
+                    </View>
+                  </View>
+                </RadioButton.Group>
+              </View>
 
-            <View style={styles.bath}>
-              <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 15 }}>
-                Bathrooms
-              </Text>
-              <RadioButton.Group
-                onValueChange={(value) => setBath(value)}
-                value={bath}
-              >
-                <View style={{ flexDirection: "row" }}>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>Any</Text>
-                    <RadioButton value="Any" />
+              <View style={styles.bath}>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "bold", marginTop: 15 }}
+                >
+                  Bathrooms
+                </Text>
+                <RadioButton.Group
+                  onValueChange={(value) => setBath(value)}
+                  value={bath}
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>Any</Text>
+                      <RadioButton value="Any" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>1+</Text>
+                      <RadioButton value="1" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>2+</Text>
+                      <RadioButton value="2" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>3+</Text>
+                      <RadioButton value="3" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>4+</Text>
+                      <RadioButton value="4" />
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text>5+</Text>
+                      <RadioButton value="5" />
+                    </View>
                   </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>1+</Text>
-                    <RadioButton value="1" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>2+</Text>
-                    <RadioButton value="2" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>3+</Text>
-                    <RadioButton value="3" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>4+</Text>
-                    <RadioButton value="4" />
-                  </View>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text>5+</Text>
-                    <RadioButton value="5" />
-                  </View>
+                </RadioButton.Group>
+              </View>
+
+              <View style={styles.communityContainer}>
+                <Text
+                  style={{ fontSize: 18, fontWeight: "bold", marginTop: 15 }}
+                >
+                  ACC Community
+                </Text>
+                <View>
+                  {community.map((community, idx) => (
+                    <View
+                      key={idx}
+                      style={{ display: "flex", flexDirection: "row" }}
+                    >
+                      <Checkbox
+                        status={community.checked ? "checked" : "unChecked"}
+                        onPress={() => {
+                          handleCheckbox();
+                        }}
+                      />
+                      <Text style={styles.community_text}>
+                        {community.name}
+                      </Text>
+                      {console.log(community.checked)}
+                    </View>
+                  ))}
                 </View>
-              </RadioButton.Group>
+              </View>
+
+              <View style={styles.submit}>
+                <TouchableOpacity style={{ backgroundColor: '#4f9deb', padding: 12, borderRadius: 4, marginTop:60}}>
+                    <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Apply Changes</Text>
+                </TouchableOpacity>
+              </View>
+              
             </View>
+            
           </View>
+          
         </View>
+        
       </Modal>
-    </View>
+    </PaperProvider>
   );
 };
 
@@ -185,6 +269,11 @@ export default filter;
 const styles = StyleSheet.create({
   modal: {
     backgroundColor: "red",
+  },
+  modalBackground: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "rgba(0,0,0,0.3)",
   },
   modalContainer: {
     height: "80%",
@@ -197,8 +286,8 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     backgroundColor: "#fcfcfc",
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
     paddingHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
@@ -221,6 +310,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
+    height:'100%'
   },
   price: {
     display: "flex",
@@ -232,4 +322,17 @@ const styles = StyleSheet.create({
   price_max: {
     width: "50%",
   },
+  communityContainer: {
+    height: 200,
+  },
+  community_text: {
+    marginVertical: 9,
+    fontSize:13
+  },
+  submit:{
+
+  },
+  submit_button:{
+
+  }
 });
