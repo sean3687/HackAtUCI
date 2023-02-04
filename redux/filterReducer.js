@@ -36,11 +36,11 @@ export default function filterReducer(
   prev = [
     {
       community: community,
-      bed: 0,
-      bath:0,
+      bed: 1,
+      bath:1,
       priceMin:0,
-      priceMax:1,
-      soldout:false,
+      priceMax:100000000,
+      availability:"",
     }
   ],
   action
@@ -48,7 +48,7 @@ export default function filterReducer(
 ){
   let newData = [...prev]
   switch(action.type){
-    case "":
+    case "updateCommunityCheckbox":
       return newData
     default:
       return prev
