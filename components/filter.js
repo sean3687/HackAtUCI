@@ -137,7 +137,9 @@ const filter = () => {
     // store.dispatch({ type: "updateCommunityCheckbox", payload: community });
     setAnimation(true);
     try {
-      const response = await axios.get(createURL());
+      const response = await axios.get(
+        "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=SELECT%20*%20FROM%20housing"
+      );
       console.log("this is response.data" + response.data.rows[0].image);
       // store.dispatch({ type: "updateListOfReviews", payload: response.data });
     } catch (error) {
