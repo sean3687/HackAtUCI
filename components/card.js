@@ -2,40 +2,32 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import icon from "../assets/icon.png";
 import store from "../redux/store";
-import safety from "../redux/safety"
+import safety from "../redux/safety";
 
 //plaza verde: #246842
 
 let map = new Map();
-let color = ["#5F668C", "#4e3d59", "#c73d3e", "#c99b2b", "#5fa182","#307255"];
-map.set("Vista del Campo",  color[0]);
+let color = ["#5F668C", "#4e3d59", "#c73d3e", "#c99b2b", "#5fa182", "#307255"];
+map.set("Vista del Campo", color[0]);
 map.set("Vista del Campo Norte", color[1]);
 map.set("Puerta del Sol", color[2]);
 map.set("Camino del Sol", color[3]);
 map.set("Plaza Verde I", color[4]);
 map.set("Plaza Verde II", color[5]);
 
-
-
 function addon(community_name) {
   return map.get(community_name);
 }
 
 const card = () => {
+  const [objJSON, setobjJSON] = useState(safety);
 
-  
-  const [objJSON, setobjJSON] = useState(safety)
-    
-  console.log(objJSON[0])
-  return (
-    objJSON.map((route, idx)=>(
-      
-  
-   <View style={styles.card} key={idx}>
-    
+  console.log(objJSON[0]);
+  return objJSON.map((route, idx) => (
+    <View style={styles.card} key={idx}>
       <Text
         style={{
-          width: 100,
+          width: 140,
           borderRadius: 10,
           borderWidth: 1,
           paddingVertical: 10,
@@ -49,7 +41,7 @@ const card = () => {
       >
         {route.community}
       </Text>
-      <Image source={{uri:route.image}} style={styles.image}></Image>
+      <Image source={{ uri: route.image }} style={styles.image}></Image>
       <View style={styles.border}></View>
       <View style={styles.container}>
         <View style={{ display: "flex", flexDirection: "row" }}>
@@ -72,8 +64,7 @@ const card = () => {
         </View>
       </View>
     </View>
-      ))
-  );
+  ));
 };
 
 export default card;
@@ -91,7 +82,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginVertical: 10,
   },
- 
+
   border: {
     height: 1,
     marginTop: 10,
