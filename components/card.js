@@ -40,7 +40,7 @@ const card = (props) => {
       >
         {props.community}
       </Text>
-      <Image source={{ uri: route.image }} style={styles.image}></Image>
+      <Image source={{ uri: props.image }} style={styles.image}></Image>
       <View style={styles.border}></View>
       <View style={styles.container}>
         <View style={{ display: "flex", flexDirection: "row" }}>

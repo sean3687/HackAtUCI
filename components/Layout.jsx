@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   header: {
-    height: 120,
+    height: 150,
     backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
@@ -172,8 +172,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ddd",
   },
   headerText: {
-    marginTop:20,
-    fontSize: 45,
+    fontSize: 50,
     fontWeight: "bold",
     display:"flex",
     
