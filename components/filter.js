@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import Checkbox from 'expo-checkbox';
+import axios from "axios";
 import { Picker } from "@react-native-picker/picker";
 import React, { useEffect, useState } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -109,15 +110,23 @@ const filter = () => {
   };
   
  
-  const Submit=() =>{
-    store.dispatch({type:"updateCommunityCheckbox", payload: community})
-    setAnimation(true)
-    setTimeout(()=>{
-        setAnimation(false)
-        setShowFilterOptions(false)
-    },2000)
-    
-  }
+  const Submit = async () => {
+    store.dispatch({ type: "updateCommunityCheckbox", payload: community });
+    setAnimation(true);
+    try {
+      const response = await axios.get("https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=SELECT%20*%20FROM%20housing")
+      console.log(response.data["rows"]);
+      store.dispatch({ type: "updateListOfReviews", payload: response.data });
+      
+    }
+    catch(error) {
+        console.error(error);
+    }
+    finally {
+        setAnimation(false);
+        setShowFilterOptions(false);
+    };
+  };
 
   useEffect(() => {
     setCommunity(store.getState().filterReducer[0].community);
@@ -231,38 +240,38 @@ const filter = () => {
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>Any</Text>
                       <RadioButton value="10" />
+                      <Text>Any</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>1+</Text>
                       <RadioButton value="1" />
+                      <Text>1+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>1.5+</Text>
                       <RadioButton value="1.5" />
+                      <Text>1.5+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>2+</Text>
                       <RadioButton value="2" />
+                      <Text>2+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>3+</Text>
                       <RadioButton value="3" />
+                      <Text>3+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>4+</Text>
                       <RadioButton value="4" />
+                      <Text>4+</Text>
                     </View>
                   </View>
                 </RadioButton.Group>
@@ -283,38 +292,38 @@ const filter = () => {
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>Any</Text>
                       <RadioButton value="10" />
+                      <Text>Any</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>1+</Text>
                       <RadioButton value="1" />
+                      <Text>1+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>2+</Text>
                       <RadioButton value="2" />
+                      <Text>2+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>3+</Text>
                       <RadioButton value="3" />
+                      <Text>3+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>4+</Text>
                       <RadioButton value="4" />
+                      <Text>4+</Text>
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <Text>5+</Text>
                       <RadioButton value="5" />
+                      <Text>5+</Text>
                     </View>
                   </View>
                 </RadioButton.Group>
