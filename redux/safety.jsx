@@ -111,72 +111,72 @@ export default safety =
     //     "size": "500",
     //     "image": "https://www.americancampus.com/getmedia/22ce4fe0-103a-4baa-b115-bf8f65096239/760_1-bed-1-bath_original-01.png"
     //   },
-    //   {
-    //     "id": "18",
-    //     "community": "Vista del Campo",
-    //     "term": "Fall 2023",
-    //     "title": "2 Bed - 2 Bath",
-    //     "price": "1180",
-    //     "num_beds": "2",
-    //     "num_baths": "2.0",
-    //     "size": "750",
-    //     "image": "https://www.americancampus.com/getmedia/a2d8979c-ae78-4feb-a277-1d155db37875/760_2-bed-2-bath-private-deluxe_original-01.png"
-    //   },
-    //   {
-    //     "id": "19",
-    //     "community": "Vista del Campo",
-    //     "term": "Fall 2023",
-    //     "title": "3 Bed - 2 Bath",
-    //     "price": "1086",
-    //     "num_beds": "3",
-    //     "num_baths": "2.0",
-    //     "size": "1000",
-    //     "image": "https://www.americancampus.com/getmedia/67cebf99-4f32-4ffe-b165-532b4cfa6b69/760_3-bed-2-bath-original-01.png"
-    //   },
-    //   {
-    //     "id": "2",
-    //     "community": "Plaza Verde",
-    //     "term": "Fall 2023",
-    //     "title": "2 Bed - 1 Bath",
-    //     "price": "1124",
-    //     "num_beds": "2",
-    //     "num_baths": "1.0",
-    //     "size": "0",
-    //     "image": "https://www.americancampus.com/getmedia/1d08df0e-04d0-447e-b02b-605e5546664d/728_2-bed-1-bath_original-01.png"
-    //   },
-    //   {
-    //     "id": "20",
-    //     "community": "Vista del Campo",
-    //     "term": "Fall 2023",
-    //     "title": "4 Bed - 2 Bath",
-    //     "price": "1036",
-    //     "num_beds": "4",
-    //     "num_baths": "2.0",
-    //     "size": "1145",
-    //     "image": "https://www.americancampus.com/getmedia/bb35a658-2f77-4016-b91d-31bc85ff03b8/760_4-bed-2-bath-shared_original-01.png"
-    //   },
-    //   {
-    //     "id": "21",
-    //     "community": "Vista del Campo",
-    //     "term": "Summer 2023",
-    //     "title": "1 Bed - 1 Bath",
-    //     "price": "1660",
-    //     "num_beds": "1",
-    //     "num_baths": "1.0",
-    //     "size": "500",
-    //     "image": "https://www.americancampus.com/getmedia/22ce4fe0-103a-4baa-b115-bf8f65096239/760_1-bed-1-bath_original-01.png"
-    //   },
-    //   {
-    //     "id": "22",
-    //     "community": "Vista del Campo",
-    //     "term": "Summer 2023",
-    //     "title": "2 Bed - 2 Bath",
-    //     "price": "1180",
-    //     "num_beds": "2",
-    //     "num_baths": "2.0",
-    //     "size": "750",
-    //     "image": "https://www.americancampus.com/getmedia/a2d8979c-ae78-4feb-a277-1d155db37875/760_2-bed-2-bath-private-deluxe_original-01.png"
-    //   },
+      {
+        "id": "18",
+        "community": "Vista del Campo",
+        "term": "Fall 2023",
+        "title": "2 Bed - 2 Bath",
+        "price": "1180",
+        "num_beds": "2",
+        "num_baths": "2.0",
+        "size": "750",
+        "image": "https://www.americancampus.com/getmedia/a2d8979c-ae78-4feb-a277-1d155db37875/760_2-bed-2-bath-private-deluxe_original-01.png"
+      },
+      {
+        "id": "19",
+        "community": "Vista del Campo",
+        "term": "Fall 2023",
+        "title": "3 Bed - 2 Bath",
+        "price": "1086",
+        "num_beds": "3",
+        "num_baths": "2.0",
+        "size": "1000",
+        "image": "https://www.americancampus.com/getmedia/67cebf99-4f32-4ffe-b165-532b4cfa6b69/760_3-bed-2-bath-original-01.png"
+      },
+      {
+        "id": "2",
+        "community": "Plaza Verde",
+        "term": "Fall 2023",
+        "title": "2 Bed - 1 Bath",
+        "price": "1124",
+        "num_beds": "2",
+        "num_baths": "1.0",
+        "size": "0",
+        "image": "https://www.americancampus.com/getmedia/1d08df0e-04d0-447e-b02b-605e5546664d/728_2-bed-1-bath_original-01.png"
+      },
+      {
+        "id": "20",
+        "community": "Vista del Campo",
+        "term": "Fall 2023",
+        "title": "4 Bed - 2 Bath",
+        "price": "1036",
+        "num_beds": "4",
+        "num_baths": "2.0",
+        "size": "1145",
+        "image": "https://www.americancampus.com/getmedia/bb35a658-2f77-4016-b91d-31bc85ff03b8/760_4-bed-2-bath-shared_original-01.png"
+      },
+      {
+        "id": "21",
+        "community": "Vista del Campo",
+        "term": "Summer 2023",
+        "title": "1 Bed - 1 Bath",
+        "price": "1660",
+        "num_beds": "1",
+        "num_baths": "1.0",
+        "size": "500",
+        "image": "https://www.americancampus.com/getmedia/22ce4fe0-103a-4baa-b115-bf8f65096239/760_1-bed-1-bath_original-01.png"
+      },
+      {
+        "id": "22",
+        "community": "Vista del Campo",
+        "term": "Summer 2023",
+        "title": "2 Bed - 2 Bath",
+        "price": "1180",
+        "num_beds": "2",
+        "num_baths": "2.0",
+        "size": "750",
+        "image": "https://www.americancampus.com/getmedia/a2d8979c-ae78-4feb-a277-1d155db37875/760_2-bed-2-bath-private-deluxe_original-01.png"
+      },
     //   {
     //     "id": "23",
     //     "community": "Vista del Campo",
@@ -232,50 +232,50 @@ export default safety =
     //     "size": "810",
     //     "image": "https://www.americancampus.com/getmedia/4a3b0159-2931-4dfb-bb06-eb7e527a9524/762_3-bed-2-bath-single-occupancy-original-01.png"
     //   },
-    //   {
-    //     "id": "28",
-    //     "community": "Vista del Campo Norte",
-    //     "term": "Fall 2023",
-    //     "title": "3 Bed - 2 Bath B",
-    //     "price": "850",
-    //     "num_beds": "3",
-    //     "num_baths": "2.0",
-    //     "size": "1000",
-    //     "image": "https://www.americancampus.com/getmedia/15f99fc5-a35c-4d4c-abcd-5ddce08ee593/762_3-bed-2-bath-mixed-occupancy-original-01.png"
-    //   },
-    //   {
-    //     "id": "29",
-    //     "community": "Vista del Campo Norte",
-    //     "term": "Summer 2023",
-    //     "title": "1 Bed - 1 Bath",
-    //     "price": "1660",
-    //     "num_beds": "1",
-    //     "num_baths": "1.0",
-    //     "size": "500",
-    //     "image": "https://www.americancampus.com/getmedia/60681079-4347-4aa6-91fc-1a1835dcbbed/1-bed,-1-bath-norte-undergrad.png"
-    //   },
-    //   {
-    //     "id": "3",
-    //     "community": "Plaza Verde",
-    //     "term": "Fall 2023",
-    //     "title": "2 Bed - 2 Bath A Shared",
-    //     "price": "885",
-    //     "num_beds": "2",
-    //     "num_baths": "2.0",
-    //     "size": "0",
-    //     "image": "https://www.americancampus.com/getmedia/2016e8c3-c0d0-427f-a66c-c14c547c5483/728_2-bed-2-bath-shared-a_original-01.png"
-    //   },
-    //   {
-    //     "id": "30",
-    //     "community": "Vista del Campo Norte",
-    //     "term": "Summer 2023",
-    //     "title": "2 Bed - 2 Bath Premium",
-    //     "price": "1270",
-    //     "num_beds": "2",
-    //     "num_baths": "2.0",
-    //     "size": "800",
-    //     "image": "https://www.americancampus.com/getmedia/f0f358af-9498-4e54-9a53-5c7a58b3a89f/2-bed,-2-bath-grad-norte-01.png"
-    //   },
+      {
+        "id": "28",
+        "community": "Vista del Campo Norte",
+        "term": "Fall 2023",
+        "title": "3 Bed - 2 Bath B",
+        "price": "850",
+        "num_beds": "3",
+        "num_baths": "2.0",
+        "size": "1000",
+        "image": "https://www.americancampus.com/getmedia/15f99fc5-a35c-4d4c-abcd-5ddce08ee593/762_3-bed-2-bath-mixed-occupancy-original-01.png"
+      },
+      {
+        "id": "29",
+        "community": "Vista del Campo Norte",
+        "term": "Summer 2023",
+        "title": "1 Bed - 1 Bath",
+        "price": "1660",
+        "num_beds": "1",
+        "num_baths": "1.0",
+        "size": "500",
+        "image": "https://www.americancampus.com/getmedia/60681079-4347-4aa6-91fc-1a1835dcbbed/1-bed,-1-bath-norte-undergrad.png"
+      },
+      {
+        "id": "3",
+        "community": "Plaza Verde",
+        "term": "Fall 2023",
+        "title": "2 Bed - 2 Bath A Shared",
+        "price": "885",
+        "num_beds": "2",
+        "num_baths": "2.0",
+        "size": "0",
+        "image": "https://www.americancampus.com/getmedia/2016e8c3-c0d0-427f-a66c-c14c547c5483/728_2-bed-2-bath-shared-a_original-01.png"
+      },
+      {
+        "id": "30",
+        "community": "Vista del Campo Norte",
+        "term": "Summer 2023",
+        "title": "2 Bed - 2 Bath Premium",
+        "price": "1270",
+        "num_beds": "2",
+        "num_baths": "2.0",
+        "size": "800",
+        "image": "https://www.americancampus.com/getmedia/f0f358af-9498-4e54-9a53-5c7a58b3a89f/2-bed,-2-bath-grad-norte-01.png"
+      },
     //   {
     //     "id": "31",
     //     "community": "Vista del Campo Norte",
@@ -309,50 +309,50 @@ export default safety =
     //     "size": "924",
     //     "image": "https://www.americancampus.com/getmedia/dadd2d92-4073-435d-930b-c0990db5190c/763_2-bed-2-5-bath-townhome_original-01.png"
     //   },
-    //   {
-    //     "id": "34",
-    //     "community": "Camino del Sol",
-    //     "term": "Fall 2023",
-    //     "title": "3 Bed - 3 Bath Townhome",
-    //     "price": "1302",
-    //     "num_beds": "3",
-    //     "num_baths": "3.0",
-    //     "size": "1118",
-    //     "image": "https://www.americancampus.com/getmedia/5b0be88c-8171-4d9f-95cd-6fd6f9e2ae67/763_3-bed-3-bath-original-01.png"
-    //   },
-    //   {
-    //     "id": "35",
-    //     "community": "Camino del Sol",
-    //     "term": "Fall 2023",
-    //     "title": "4 Bed - 2 Bath Apartment",
-    //     "price": "1061",
-    //     "num_beds": "4",
-    //     "num_baths": "2.0",
-    //     "size": "1190",
-    //     "image": "https://www.americancampus.com/getmedia/3fb386d2-5fd7-47f2-be10-b2cfcc1ebae4/763_4-bed-2-bath-flat_original-01.png"
-    //   },
-    //   {
-    //     "id": "36",
-    //     "community": "Camino del Sol",
-    //     "term": "Fall 2023",
-    //     "title": "4 Bed - 2.5 Bath Townhome",
-    //     "price": "1164",
-    //     "num_beds": "4",
-    //     "num_baths": "2.5",
-    //     "size": "1423",
-    //     "image": "https://www.americancampus.com/getmedia/1d66549d-3ff4-4038-9d13-8cfe9bb9bd8d/763_4-bed-2-5-bath-townhome_original-01.png"
-    //   },
-    //   {
-    //     "id": "37",
-    //     "community": "Camino del Sol",
-    //     "term": "Fall 2023",
-    //     "title": "4 Bed - 2.5 Bath Townhome Corner",
-    //     "price": "1164",
-    //     "num_beds": "4",
-    //     "num_baths": "2.5",
-    //     "size": "1381",
-    //     "image": "https://www.americancampus.com/getmedia/f9eebd59-148a-4d07-84d1-59f8267e805c/763_4-bed-2-5-bath-townhome-corner_original-01.png"
-    //   },
+      {
+        "id": "34",
+        "community": "Camino del Sol",
+        "term": "Fall 2023",
+        "title": "3 Bed - 3 Bath Townhome",
+        "price": "1302",
+        "num_beds": "3",
+        "num_baths": "3.0",
+        "size": "1118",
+        "image": "https://www.americancampus.com/getmedia/5b0be88c-8171-4d9f-95cd-6fd6f9e2ae67/763_3-bed-3-bath-original-01.png"
+      },
+      {
+        "id": "35",
+        "community": "Camino del Sol",
+        "term": "Fall 2023",
+        "title": "4 Bed - 2 Bath Apartment",
+        "price": "1061",
+        "num_beds": "4",
+        "num_baths": "2.0",
+        "size": "1190",
+        "image": "https://www.americancampus.com/getmedia/3fb386d2-5fd7-47f2-be10-b2cfcc1ebae4/763_4-bed-2-bath-flat_original-01.png"
+      },
+      {
+        "id": "36",
+        "community": "Camino del Sol",
+        "term": "Fall 2023",
+        "title": "4 Bed - 2.5 Bath Townhome",
+        "price": "1164",
+        "num_beds": "4",
+        "num_baths": "2.5",
+        "size": "1423",
+        "image": "https://www.americancampus.com/getmedia/1d66549d-3ff4-4038-9d13-8cfe9bb9bd8d/763_4-bed-2-5-bath-townhome_original-01.png"
+      },
+      {
+        "id": "37",
+        "community": "Camino del Sol",
+        "term": "Fall 2023",
+        "title": "4 Bed - 2.5 Bath Townhome Corner",
+        "price": "1164",
+        "num_beds": "4",
+        "num_baths": "2.5",
+        "size": "1381",
+        "image": "https://www.americancampus.com/getmedia/f9eebd59-148a-4d07-84d1-59f8267e805c/763_4-bed-2-5-bath-townhome-corner_original-01.png"
+      },
     //   {
     //     "id": "38",
     //     "community": "Camino del Sol",
@@ -441,28 +441,28 @@ export default safety =
     //     "size": "1499",
     //     "image": "https://www.americancampus.com/getmedia/dd50a26d-ab92-4527-9d88-c411ec07310e/763_4-bed-4-5-bath-townhome_original-01.png"
     //   },
-    //   {
-    //     "id": "45",
-    //     "community": "Puerta del Sol",
-    //     "term": "Fall 2023",
-    //     "title": "1 Bed - 1 Bath A",
-    //     "price": "1740",
-    //     "num_beds": "1",
-    //     "num_baths": "1.0",
-    //     "size": "536",
-    //     "image": "https://www.americancampus.com/getmedia/179188ba-8b15-4ec5-ab0d-a65795938d89/764_1-bed-1-bath-a_original.png"
-    //   },
-    //   {
-    //     "id": "46",
-    //     "community": "Puerta del Sol",
-    //     "term": "Fall 2023",
-    //     "title": "1 Bed - 1 Bath B",
-    //     "price": "1740",
-    //     "num_beds": "1",
-    //     "num_baths": "1.0",
-    //     "size": "529",
-    //     "image": "https://www.americancampus.com/getmedia/a3986cc2-c4d2-4f31-b51e-228fe55cefac/764_1-bed-1-bath-b_original.png"
-    //   },
+      {
+        "id": "45",
+        "community": "Puerta del Sol",
+        "term": "Fall 2023",
+        "title": "1 Bed - 1 Bath A",
+        "price": "1740",
+        "num_beds": "1",
+        "num_baths": "1.0",
+        "size": "536",
+        "image": "https://www.americancampus.com/getmedia/179188ba-8b15-4ec5-ab0d-a65795938d89/764_1-bed-1-bath-a_original.png"
+      },
+      {
+        "id": "46",
+        "community": "Puerta del Sol",
+        "term": "Fall 2023",
+        "title": "1 Bed - 1 Bath B",
+        "price": "1740",
+        "num_beds": "1",
+        "num_baths": "1.0",
+        "size": "529",
+        "image": "https://www.americancampus.com/getmedia/a3986cc2-c4d2-4f31-b51e-228fe55cefac/764_1-bed-1-bath-b_original.png"
+      },
     //   {
     //     "id": "47",
     //     "community": "Puerta del Sol",

@@ -8,12 +8,12 @@ import safety from "../redux/safety"
 
 let map = new Map();
 let color = ["#5F668C", "#4e3d59", "#c73d3e", "#c99b2b", "#5fa182","#307255"];
-map.set("Vista del Campo", ["VDCN", color[0]]);
-map.set("Vista del Campo Norte", ["VDCN", color[1]]);
-map.set("Puerta del Sol", ["PDS", color[2]]);
-map.set("Camino del Sol", ["CDS", color[3]]);
-map.set("Plaza Verde I", ["PVI", color[4]]);
-map.set("Plaza Verde II", ["PVII", color[5]]);
+map.set("Vista del Campo",  color[0]);
+map.set("Vista del Campo Norte", color[1]);
+map.set("Puerta del Sol", color[2]);
+map.set("Camino del Sol", color[3]);
+map.set("Plaza Verde I", color[4]);
+map.set("Plaza Verde II", color[5]);
 
 
 
@@ -24,11 +24,15 @@ function addon(community_name) {
 const card = () => {
 
   
-  const [objJSON, setobjJSON] = useState()
-    //console.log(safety)
- 
+  const [objJSON, setobjJSON] = useState(safety)
+    
+  console.log(objJSON[0])
   return (
-    <View style={styles.card}>
+    objJSON.map((route, idx)=>(
+      
+  
+   <View style={styles.card} key={idx}>
+    
       <Text
         style={{
           width: 100,
@@ -36,16 +40,16 @@ const card = () => {
           borderWidth: 1,
           paddingVertical: 10,
           textAlign: "center",
-          borderColor: addon("Plaza Verde II")[1],
+          borderColor: addon(route.community),
           borderRadius: 10,
           fontWeight: "bold",
-          color: addon("Plaza Verde II")[1],
+          color: addon(route.community),
           marginBottom: 10,
         }}
       >
-        PlazaVerde
+        {route.community}
       </Text>
-      <Image source={icon} style={styles.image}></Image>
+      <Image source={{uri:route.image}} style={styles.image}></Image>
       <View style={styles.border}></View>
       <View style={styles.container}>
         <View style={{ display: "flex", flexDirection: "row" }}>
@@ -58,16 +62,17 @@ const card = () => {
               paddingVertical: 0,
             }}
           >
-            2 Bed - 2 Bath
+            {route.title}
           </Text>
         </View>
 
         <View style={{ display: "flex" }}>
-          <Text style={styles.price}>$600</Text>
+          <Text style={styles.price}>${route.price}</Text>
           <Text style={styles.price_sub}>PER INSTALLMENT/PER PERSON</Text>
         </View>
       </View>
     </View>
+      ))
   );
 };
 
