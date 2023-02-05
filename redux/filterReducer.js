@@ -44,19 +44,40 @@ export default function filterReducer(
     }
   ],
   action
-
+  
 ){
   let newData = [...prev]
   switch(action.type){
+    
+    case "updatePriceMin":
+      let newMin = action.payload
+      newData[0].priceMin = newMin
+      console.log(newData[0].priceMin)
+      return newData
+
+    case "updatePriceMax":
+      let newMax = action.payload
+      newData[0].priceMax = newMax
+      console.log(newData[0].priceMax)
+      return newData
+
+
+    case "updateBeds":
+      let newBeds = action.payload
+      newData[0].bed = newBeds
+      console.log(newData[0].bed)
+      return newData
+      
+    case "updateBaths":
+      let newBaths = action.payload
+      newData[0].bath = newBaths
+      console.log(newData[0].bath)
+      return newData
+      
     case "updateCommunityCheckbox":
-      return newData
-    case "updatePriceMinimum":
-      return newData
-    case "updatePriceMaximum":
-      return newData
-    case "updatebeds":
-      return newData
-    case "update":
+      let newCommunity = action.payload
+      newData[0].community = newCommunity
+      console.log(newData)
       return newData
     default:
       return prev

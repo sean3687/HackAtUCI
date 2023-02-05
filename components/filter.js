@@ -1,46 +1,141 @@
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  ActivityIndicator,
+} from "react-native";
+import Checkbox from 'expo-checkbox';
 import { Picker } from "@react-native-picker/picker";
 import React, { useEffect, useState } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { RadioButton, Checkbox, DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  RadioButton,
+
+  DefaultTheme,
+  Provider as PaperProvider,
+  Button,
+} from "react-native-paper";
 
 import store from "../redux/store";
 
+
+const community_data = [
+    {
+      name:"Vista del Campo",
+      short:"VDC",
+      checked:true,
+    },
+    {
+      name:"Vista del Campo Norte",
+      short:"VDCN",
+      checked:true,
+    },
+    {
+      name:"Camino del Sol",
+      short:"CDS",
+      checked:true,
+    },
+    {
+      name:"Puerta del Sol",
+      short:"PDS",
+      checked:true,
+    },
+    {
+      name:"Plaza Verde",
+      short:"PV",
+      checked:true,
+    },
+    {
+      name:"Plaza Verde II",
+      short:"PVII",
+      checked:true,
+    },
+  
+  ]
 const filter = () => {
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(10000);
   const [bed, setBed] = useState(10);
   const [bath, setBath] = useState(10);
-  const [community, setCommunity] = useState(
-    store.getState().filterReducer[0].community
-  );
+  const [community, setCommunity] = useState(community_data);          
+  const [animation, setAnimation] = useState(false)
 
-const handleCheckbox = () => {};
-const theme = {
+  useEffect(() => {
+    console.log('Community data has changed:', community);
+  }, [community]);
+
+  const theme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#4f9deb',
-      accent: '#f1c40f',
+      primary: "#4f9deb",
+      accent: "#f1c40f",
     },
   };
+ 
+
+  function updatePriceMin(Min) {
+    setMin(Min);
+    let Int = parseInt(Min);
+    store.dispatch({ type: "updatePriceMin", payload: Int });
+  }
+
+  function updatePriceMax(Max) {
+    setMax(Max);
+    let Int = parseInt(Max);
+    store.dispatch({ type: "updatePriceMax", payload: Int });
+  }
+
+  function updateBeds(Bed) {
+    setBed(Bed);
+    let Int = parseInt(Bed);
+    store.dispatch({ type: "updateBeds", payload: Int });
+  }
+
+  function updateBaths(Bath) {
+    setBath(Bath);
+    let Int = parseInt(Bath);
+    store.dispatch({ type: "updateBaths", payload: Int });
+  }
+
+  const updateCommunityCheckbox = (idx, bool) => {
+    setCommunity(prevCommunity => {
+         const newCommunity = [...prevCommunity];
+         newCommunity[idx].checked = bool;
+         return newCommunity;
+       });
+  };
+  
+ 
+  const Submit=() =>{
+    store.dispatch({type:"updateCommunityCheckbox", payload: community})
+    setAnimation(true)
+    setTimeout(()=>{
+        setAnimation(false)
+        setShowFilterOptions(false)
+    },2000)
+    
+  }
 
   useEffect(() => {
     setCommunity(store.getState().filterReducer[0].community);
-
-    const updateCommunityCheckbox = () => {
-      store.dispatch({ type: "updateCommunityCheckbox", payload: [] });
-    };
   });
 
   return (
     <PaperProvider theme={theme}>
-      <Text>filter </Text>
-      <TouchableOpacity onPress={() => setShowFilterOptions(true)}>
+      <Button
+        onPress={() => setShowFilterOptions(true)}
+        mode="outlined"
+        color="#4f9deb"
+      >
+        <Ionicons name="filter-outline" size={20} color="#4f9deb" />
         <Text style={styles.button}>Open Filter</Text>
-      </TouchableOpacity>
-      
+      </Button>
+
       <Modal
         transparent={true}
         style={styles.modal}
@@ -58,7 +153,9 @@ const theme = {
                 <MaterialIcons name="close" color="#2a2a33" size={22} />
               </TouchableOpacity>
             </View>
+
             <View style={styles.border}></View>
+
             <View style={styles.contentContainer}>
               <View style={styles.price}>
                 <View style={styles.price_min}>
@@ -66,22 +163,24 @@ const theme = {
                     Price Minimum
                   </Text>
                   <Picker
-                    
                     selectedValue={min}
                     onValueChange={(min) => {
-                      setMin(min);
-                      console.log(min);
+                      updatePriceMin(min);
                     }}
                     style={{ width: 160, postion: "absolute", fontSize: 10 }}
                     mode="dropdown"
                     itemStyle={{
-                      color: "red",
+                      color: "#4f9deb",
                       fontWeight: "900",
                       fontSize: 18,
                       padding: 30,
                     }}
                   >
-                    <Picker.Item style ={{fontSize:15}} label="No Min" value="0" />
+                    <Picker.Item
+                      style={{ fontSize: 15 }}
+                      label="No Min"
+                      value="0"
+                    />
                     <Picker.Item label="$200" value="200" />
                     <Picker.Item label="$400" value="400" />
                     <Picker.Item label="$600" value="800" />
@@ -96,13 +195,12 @@ const theme = {
                   <Picker
                     selectedValue={max}
                     onValueChange={(max) => {
-                      setMax(max);
-                      console.log(max);
+                      updatePriceMax(max);
                     }}
                     style={{ width: 160, postion: "absolute", fontSize: 10 }}
                     mode="dropdown"
                     itemStyle={{
-                      color: "red",
+                      color: "#4f9deb",
                       fontWeight: "900",
                       fontSize: 18,
                       padding: 30,
@@ -118,14 +216,12 @@ const theme = {
                   </Picker>
                 </View>
               </View>
+
               <View style={styles.bed}>
-                <Text
-                  style={{ fontSize: 18, fontWeight: "bold",}}
-                >
-                  Beds
-                </Text>
+                <Text style={{ fontSize: 18, fontWeight: "bold" }}>Beds</Text>
+                <View style={styles.border}></View>
                 <RadioButton.Group
-                  onValueChange={(value) => setBed(value)}
+                  onValueChange={(value) => updateBeds(value)}
                   value={bed}
                 >
                   <View style={{ flexDirection: "row" }}>
@@ -133,7 +229,7 @@ const theme = {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <Text>Any</Text>
-                      <RadioButton value="Any" />
+                      <RadioButton value="10" />
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
@@ -175,8 +271,9 @@ const theme = {
                 >
                   Bathrooms
                 </Text>
+                <View style={styles.border}></View>
                 <RadioButton.Group
-                  onValueChange={(value) => setBath(value)}
+                  onValueChange={(value) => updateBaths(value)}
                   value={bath}
                 >
                   <View style={{ flexDirection: "row" }}>
@@ -184,7 +281,7 @@ const theme = {
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
                       <Text>Any</Text>
-                      <RadioButton value="Any" />
+                      <RadioButton value="10" />
                     </View>
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
@@ -226,6 +323,7 @@ const theme = {
                 >
                   ACC Community
                 </Text>
+                <View style={styles.border}></View>
                 <View>
                   {community.map((community, idx) => (
                     <View
@@ -233,32 +331,55 @@ const theme = {
                       style={{ display: "flex", flexDirection: "row" }}
                     >
                       <Checkbox
-                        status={community.checked ? "checked" : "unChecked"}
-                        onPress={() => {
-                          handleCheckbox();
-                        }}
+                        color="#4f9deb"
+                        value={community.checked}
+                        onValueChange={() => (updateCommunityCheckbox(idx,!community.checked))
+                        }
+                        
                       />
                       <Text style={styles.community_text}>
                         {community.name}
+                        
                       </Text>
-                      {console.log(community.checked)}
+                     
                     </View>
                   ))}
                 </View>
               </View>
 
               <View style={styles.submit}>
-                <TouchableOpacity style={{ backgroundColor: '#4f9deb', padding: 12, borderRadius: 4, marginTop:60}}>
-                    <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Apply Changes</Text>
+                <TouchableOpacity
+                onPress={()=>{
+                    Submit()
+                }}
+                  style={{
+                    backgroundColor: "#4f9deb",
+                    padding: 12,
+                    borderRadius: 4,
+                    marginTop: 60,
+                  }}
+                >
+                  <View animating="false" style={{display:'flex',flexDirection:'row', justifyContent:"center", marginLeft:10}}>
+                    <Text
+                      style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        textAlign: "center",
+                      }}
+                    >
+                      Apply Changes
+                    </Text>
+                    <ActivityIndicator
+                      animating={animation}
+                      size="small"
+                      color="#0000ff"
+                    ></ActivityIndicator>
+                  </View>
                 </TouchableOpacity>
               </View>
-              
             </View>
-            
           </View>
-          
         </View>
-        
       </Modal>
     </PaperProvider>
   );
@@ -270,13 +391,17 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: "red",
   },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
   modalBackground: {
     height: "100%",
     width: "100%",
     backgroundColor: "rgba(0,0,0,0.3)",
   },
   modalContainer: {
-    height: "80%",
+    height: "90%",
     width: "100%",
     backgroundColor: "#fcfcfc",
     borderTopRightRadius: 18,
@@ -286,15 +411,12 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     backgroundColor: "#fcfcfc",
-    borderTopRightRadius: 40,
-    borderTopLeftRadius: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     paddingHorizontal: 20,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  button: {
-    height: 20,
   },
   title: {
     alignItems: "center",
@@ -310,7 +432,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-    height:'100%'
+    height: "100%",
   },
   price: {
     display: "flex",
@@ -318,21 +440,19 @@ const styles = StyleSheet.create({
   },
   price_min: {
     width: "50%",
+    alignItems: "center",
   },
   price_max: {
     width: "50%",
+    alignItems: "center",
   },
   communityContainer: {
     height: 200,
   },
   community_text: {
     marginVertical: 9,
-    fontSize:13
+    fontSize: 13,
   },
-  submit:{
-
-  },
-  submit_button:{
-
-  }
+  submit: {},
+  submit_button: {},
 });
