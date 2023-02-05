@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
 
   subHeader:{
     width:'100%',
-    
+    backgroundColor:'rgb(247,247,248)'
   },
   filterButton: {
       flexDirection: "row",
@@ -408,13 +408,14 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       borderColor: "#4f9deb",
       paddingHorizontal:20,
-      marginTop:10
+      marginTop:10,
+        backgroundColor:"rgb(255,255,255)"
   },
   buttonText:{
     justifyContent: "center",
       alignItems: "center",
       color: "#4f9deb",
-      marginTop: 8,
+      marginTop: 5,
       marginLeft: 5,
   },
   modalBackground: {

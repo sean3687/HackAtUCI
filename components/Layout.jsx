@@ -205,12 +205,13 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+    
   },
   content: {
     display:"flex",
     flexDirection:"column",
     width:"100%",
-    
+    backgroundColor:'rgb(247,247,248)'
     
   },
   footer: {
