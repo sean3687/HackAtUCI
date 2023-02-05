@@ -6,7 +6,7 @@ import {
   Modal,
   ActivityIndicator,
 } from "react-native";
-import Checkbox from 'expo-checkbox';
+import Checkbox from "expo-checkbox";
 import axios from "axios";
 import { Picker } from "@react-native-picker/picker";
 import React, { useEffect, useState } from "react";
@@ -20,51 +20,49 @@ import {
 
 import store from "../redux/store";
 
-
 const community_data = [
-    {
-      name:"Vista del Campo",
-      short:"VDC",
-      checked:true,
-    },
-    {
-      name:"Vista del Campo Norte",
-      short:"VDCN",
-      checked:true,
-    },
-    {
-      name:"Camino del Sol",
-      short:"CDS",
-      checked:true,
-    },
-    {
-      name:"Puerta del Sol",
-      short:"PDS",
-      checked:true,
-    },
-    {
-      name:"Plaza Verde",
-      short:"PV",
-      checked:true,
-    },
-    {
-      name:"Plaza Verde II",
-      short:"PVII",
-      checked:true,
-    },
-  
-  ]
+  {
+    name: "Vista del Campo",
+    short: "VDC",
+    checked: true,
+  },
+  {
+    name: "Vista del Campo Norte",
+    short: "VDCN",
+    checked: true,
+  },
+  {
+    name: "Camino del Sol",
+    short: "CDS",
+    checked: true,
+  },
+  {
+    name: "Puerta del Sol",
+    short: "PDS",
+    checked: true,
+  },
+  {
+    name: "Plaza Verde",
+    short: "PV",
+    checked: true,
+  },
+  {
+    name: "Plaza Verde II",
+    short: "PVII",
+    checked: true,
+  },
+];
 const filter = () => {
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(10000);
   const [bed, setBed] = useState(10);
   const [bath, setBath] = useState(10);
-  const [community, setCommunity] = useState(community_data);          
-  const [animation, setAnimation] = useState(false)
+  const [community, setCommunity] = useState(community_data);
+  const [animation, setAnimation] = useState(false);
 
   useEffect(() => {
-    console.log('Community data has changed:', community);
+    console.log("Community data has changed:", community);
   }, [community]);
 
   const theme = {
@@ -75,7 +73,6 @@ const filter = () => {
       accent: "#f1c40f",
     },
   };
- 
 
   function updatePriceMin(Min) {
     setMin(Min);
@@ -101,31 +98,42 @@ const filter = () => {
     store.dispatch({ type: "updateBaths", payload: Int });
   }
 
+  function createURL() {
+    let sqlString = "SELECT * from housing WHERE price BETWEEN ";
+    sqlString += String(min);
+    sqlString += " AND ";
+    sqlString += String(max);
+    sqlString += " AND num_beds BETWEEN 0 AND ";
+    sqlString += String(bed);
+    sqlString += " AND num_baths BETWEEN 0 AND ";
+    sqlString += String(bath);
+    return (
+      "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" +
+      encodeURI(sqlString)
+    );
+  }
+
   const updateCommunityCheckbox = (idx, bool) => {
-    setCommunity(prevCommunity => {
-         const newCommunity = [...prevCommunity];
-         newCommunity[idx].checked = bool;
-         return newCommunity;
-       });
+    setCommunity((prevCommunity) => {
+      const newCommunity = [...prevCommunity];
+      newCommunity[idx].checked = bool;
+      return newCommunity;
+    });
   };
-  
- 
+
   const Submit = async () => {
     // store.dispatch({ type: "updateCommunityCheckbox", payload: community });
     setAnimation(true);
     try {
-      const response = await axios.get("https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=SELECT%20*%20FROM%20housing")
-      console.log("this is response.data"+response.data.rows[0].image);
+      const response = await axios.get(createURL());
+      console.log("this is response.data" + response.data.rows[0].image);
       // store.dispatch({ type: "updateListOfReviews", payload: response.data });
-      
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setAnimation(false);
+      setShowFilterOptions(false);
     }
-    catch(error) {
-        console.error(error);
-    }
-    finally {
-        setAnimation(false);
-        setShowFilterOptions(false);
-    };
   };
 
   useEffect(() => {
@@ -134,17 +142,15 @@ const filter = () => {
 
   return (
     <PaperProvider theme={theme}>
-        <View style={styles.subHeader}>
-
-       
+      <View style={styles.subHeader}>
         <TouchableOpacity
-            style={styles.filterButton}
-            onPress={() => setShowFilterOptions(true)}
-            mode="outlined"
-            color="#4f9deb"
+          style={styles.filterButton}
+          onPress={() => setShowFilterOptions(true)}
+          mode="outlined"
+          color="#4f9deb"
         >
-            <Ionicons name="filter-outline" size={30} color="#4f9deb" />
-            <Text style={styles.buttonText}>Open Filter</Text>
+          <Ionicons name="filter-outline" size={30} color="#4f9deb" />
+          <Text style={styles.buttonText}>Open Filter</Text>
         </TouchableOpacity>
       </View>
 
@@ -346,15 +352,13 @@ const filter = () => {
                         color="#4f9deb"
                         style={styles.checkbox}
                         value={community.checked}
-                        onValueChange={() => (updateCommunityCheckbox(idx,!community.checked))
+                        onValueChange={() =>
+                          updateCommunityCheckbox(idx, !community.checked)
                         }
-                        
                       />
                       <Text style={styles.community_text}>
                         {community.name}
-                        
                       </Text>
-                     
                     </View>
                   ))}
                 </View>
@@ -362,9 +366,9 @@ const filter = () => {
 
               <View style={styles.submit}>
                 <TouchableOpacity
-                onPress={()=>{
-                    Submit()
-                }}
+                  onPress={() => {
+                    Submit();
+                  }}
                   style={{
                     backgroundColor: "#4f9deb",
                     padding: 12,
@@ -372,7 +376,15 @@ const filter = () => {
                     marginTop: 60,
                   }}
                 >
-                  <View animating="false" style={{display:'flex',flexDirection:'row', justifyContent:"center", marginLeft:10}}>
+                  <View
+                    animating="false"
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      marginLeft: 10,
+                    }}
+                  >
                     <Text
                       style={{
                         color: "white",
@@ -405,27 +417,27 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
   },
 
-  subHeader:{
-    width:'100%',
-    backgroundColor:'rgb(247,247,248)'
+  subHeader: {
+    width: "100%",
+    backgroundColor: "rgb(247,247,248)",
   },
   filterButton: {
-      flexDirection: "row",
-      color: "#4f9deb",
-      padding:5,
-      borderWidth: 1,
-      borderRadius: 20,
-      borderColor: "#4f9deb",
-      paddingHorizontal:20,
-      marginTop:10,
-        backgroundColor:"rgb(255,255,255)"
+    flexDirection: "row",
+    color: "#4f9deb",
+    padding: 5,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: "#4f9deb",
+    paddingHorizontal: 20,
+    marginTop: 10,
+    backgroundColor: "rgb(255,255,255)",
   },
-  buttonText:{
+  buttonText: {
     justifyContent: "center",
-      alignItems: "center",
-      color: "#4f9deb",
-      marginTop: 5,
-      marginLeft: 5,
+    alignItems: "center",
+    color: "#4f9deb",
+    marginTop: 5,
+    marginLeft: 5,
   },
   modalBackground: {
     height: "100%",
@@ -481,9 +493,9 @@ const styles = StyleSheet.create({
   communityContainer: {
     height: 200,
   },
-  checkbox:{
-    marginTop:8,
-    marginRight:8
+  checkbox: {
+    marginTop: 8,
+    marginRight: 8,
   },
   community_text: {
     marginVertical: 9,
