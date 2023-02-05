@@ -211,11 +211,14 @@ const filter = () => {
                       label="No Min"
                       value="0"
                     />
-                    <Picker.Item label="$200" value="200" />
-                    <Picker.Item label="$400" value="400" />
-                    <Picker.Item label="$600" value="800" />
+                    <Picker.Item label="$600" value="600" />
                     <Picker.Item label="$800" value="800" />
                     <Picker.Item label="$1000" value="1000" />
+                    <Picker.Item label="$1200" value="1200" />
+                    <Picker.Item label="$1400" value="1400" />
+                    <Picker.Item label="$1600" value="1600" />
+                    <Picker.Item label="$1800" value="1800" />
+                    <Picker.Item label="$2000" value="2000" />
                   </Picker>
                 </View>
                 <View style={styles.price_max}>
@@ -237,6 +240,8 @@ const filter = () => {
                     }}
                   >
                     <Picker.Item label="No Max" value="10000" />
+                    <Picker.Item label="$800" value="800" />
+                    <Picker.Item label="$1000" value="1000" />
                     <Picker.Item label="$1200" value="1200" />
                     <Picker.Item label="$1400" value="1400" />
                     <Picker.Item label="$1600" value="1600" />
