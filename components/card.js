@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View,Image } from 'react-native'
 import React from 'react'
-import icon from "./assets/icon.png"
+import icon from "../assets/icon.png"
 
 //plaza verde: #246842
 

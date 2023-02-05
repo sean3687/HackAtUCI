@@ -13,10 +13,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Ionicons } from "@expo/vector-icons";
 import {
   RadioButton,
-
   DefaultTheme,
   Provider as PaperProvider,
-  Button,
 } from "react-native-paper";
 
 import store from "../redux/store";
@@ -127,14 +125,19 @@ const filter = () => {
 
   return (
     <PaperProvider theme={theme}>
-      <Button
-        onPress={() => setShowFilterOptions(true)}
-        mode="outlined"
-        color="#4f9deb"
-      >
-        <Ionicons name="filter-outline" size={20} color="#4f9deb" />
-        <Text style={styles.button}>Open Filter</Text>
-      </Button>
+        <View style={styles.subHeader}>
+
+       
+        <TouchableOpacity
+            style={styles.filterButton}
+            onPress={() => setShowFilterOptions(true)}
+            mode="outlined"
+            color="#4f9deb"
+        >
+            <Ionicons name="filter-outline" size={30} color="#4f9deb" />
+            <Text style={styles.buttonText}>Open Filter</Text>
+        </TouchableOpacity>
+      </View>
 
       <Modal
         transparent={true}
@@ -332,6 +335,7 @@ const filter = () => {
                     >
                       <Checkbox
                         color="#4f9deb"
+                        style={styles.checkbox}
                         value={community.checked}
                         onValueChange={() => (updateCommunityCheckbox(idx,!community.checked))
                         }
@@ -372,7 +376,7 @@ const filter = () => {
                     <ActivityIndicator
                       animating={animation}
                       size="small"
-                      color="#0000ff"
+                      color="#f7f7f7"
                     ></ActivityIndicator>
                   </View>
                 </TouchableOpacity>
@@ -391,9 +395,27 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: "red",
   },
-  button: {
-    alignItems: "center",
+
+  subHeader:{
+    width:'100%',
+    
+  },
+  filterButton: {
+      flexDirection: "row",
+      color: "#4f9deb",
+      padding:5,
+      borderWidth: 1,
+      borderRadius: 20,
+      borderColor: "#4f9deb",
+      paddingHorizontal:20,
+      marginTop:10
+  },
+  buttonText:{
     justifyContent: "center",
+      alignItems: "center",
+      color: "#4f9deb",
+      marginTop: 8,
+      marginLeft: 5,
   },
   modalBackground: {
     height: "100%",
@@ -448,6 +470,10 @@ const styles = StyleSheet.create({
   },
   communityContainer: {
     height: 200,
+  },
+  checkbox:{
+    marginTop:8,
+    marginRight:8
   },
   community_text: {
     marginVertical: 9,
