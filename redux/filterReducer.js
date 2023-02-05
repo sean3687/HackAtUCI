@@ -33,17 +33,7 @@ const community = [
 ]
 
 const list = [
-  {
-    "id": "18",
-    "community": "Vista del Campo",
-    "term": "Fall 2023",
-    "title": "2 Bed - 2 Bath",
-    "price": 1180,
-    "num_beds": 2,
-    "num_baths": 2.0,
-    "size": 750,
-    "image": "https://www.americancampus.com/getmedia/a2d8979c-ae78-4feb-a277-1d155db37875/760_2-bed-2-bath-private-deluxe_original-01.png"
-  }
+  
 ]
 
 
@@ -52,7 +42,7 @@ export default function filterReducer(
     {
       objJSON: list,
       community: community,
-      bed: 1,
+      bed:0,
       bath:1,
       priceMin:0,
       priceMax:100000000,
@@ -99,7 +89,7 @@ export default function filterReducer(
     case "updateListOfReviews":
       let newListOfReviews = action.payload;
       newData[0].objJSON = newListOfReviews;
-      
+      console.log("REDUXREDUXREDUXREDUXREDUXREDUX"+newListOfReviews)
       return newData;
 
     default:

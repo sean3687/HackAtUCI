@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
   Text,
   SafeAreaView,
-  ScrollView,
+  FlatList,
   Button,
   Modal,
   TouchableOpacity,
@@ -12,7 +12,10 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { Ionicons } from "@expo/vector-icons";
-import Cardlist from "./card";
+import Cardlist from"./card"
+import store from "../redux/store";
+import Card from "./card";
+import Filter from "./filter";
 
 const API_KEY =
   "pk.eyJ1Ijoic3ViaW5raW0zMjUiLCJhIjoiY2xkcHV4cjY3MDhzeDN2bGk2aDU5MjI0YSJ9.IjUdEKU69OMBCD0lSyUgiA";
@@ -69,24 +72,34 @@ const markers = [
 
 const Layout = ({ children, header, footer }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
 
+  const [objRedux, setobjRedux] = useState(store.getState().filterReducer[0].objJSON)
+  // const [objJSON, setobjJSON] = useState(safety)
+    
+  useEffect(()=>{
+    setobjRedux(store.getState().filterReducer[0].objJSON)
+    console.log(objRedux)
+    }
+  )
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.header}>
-        <Text style={styles.headerText}>{header}</Text>
+        <Text style={styles.headerText}>ZotHome</Text>
+        
+        <Filter style={{height:"20%",}}/>
+        
       </SafeAreaView>
+      
       <View style={styles.contentContainer}>
-        <ScrollView
-          style={styles.content}
-          contentContainerStyle={{ alignItems: "center" }}
-        >
-          {children}
-          <Cardlist />
-          <Cardlist />
-          <Cardlist />
-          <Cardlist />
-          <Cardlist />
-        </ScrollView>
+      
+        <FlatList data={objRedux} renderItem={({item}) =><Card title={item.title} price={item.price} image={item.image} community={item.community}/>}
+          style={styles.content} 
+        >{children}<TouchableOpacity><Text>text</Text></TouchableOpacity>
+        </FlatList>
       </View>
       <SafeAreaView style={styles.footer}>
         <TouchableOpacity
@@ -159,25 +172,29 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ddd",
   },
   headerText: {
+    marginTop:20,
     fontSize: 45,
     fontWeight: "bold",
+    display:"flex",
+    
   },
-  footerMap: {
-    flexDirection: "row",
-    justifyContent: "center",
-    color: "#4f9deb",
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 20,
-    borderColor: "#4f9deb",
-    paddingHorizontal: 30,
+  footerMap:{
+      flexDirection: "row",
+      justifyContent: "center",
+      color: "#4f9deb",
+      paddingVertical: 8,
+      borderWidth: 1,
+      borderRadius: 20,
+      borderColor: "#4f9deb",
+      paddingHorizontal:30
+  
   },
-  footerMapText: {
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#4f9deb",
-    marginTop: 2,
-    marginLeft: 5,
+  footerMapText:{
+      justifyContent: "center",
+      alignItems: "center",
+      color: "#4f9deb",
+      marginTop:0,
+      marginLeft: 5,
   },
 
   modalContainer: {
@@ -208,12 +225,15 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+    height:'80%'
+    
   },
   content: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    backgroundColor: "rgb(247,247,248)",
+    display:"flex",
+    flexDirection:"column",
+    width:"100%",
+    backgroundColor:'rgb(247,247,248)',
+    
   },
   footer: {
     height: 100,

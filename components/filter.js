@@ -99,14 +99,7 @@ const filter = () => {
   }
 
   function createURL() {
-    let sqlString = "SELECT * from housing WHERE price BETWEEN ";
-    sqlString += String(min);
-    sqlString += " AND ";
-    sqlString += String(max);
-    sqlString += " AND num_beds BETWEEN ";
-    sqlString += String(bed) + " AND 10";
-    sqlString += " AND num_baths BETWEEN ";
-    sqlString += String(bath) + " AND 10 AND community IN (";
+    let sqlString = "SELECT * from housing WHERE community IN "
     let communitiesChecked = [];
     community_data.forEach(function (dict) {
       if (dict["checked"] == true) {
@@ -114,11 +107,20 @@ const filter = () => {
       }
     });
 
+    sqlString += "(";
     sqlString += communitiesChecked.join(", ") + ")";
-    console.log(
-      "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" +
-        encodeURI(sqlString)
-    );
+
+    sqlString += " AND price BETWEEN ";
+    sqlString += String(min);
+    sqlString += " AND ";
+    sqlString += String(max);
+    sqlString += " AND num_beds BETWEEN ";
+    sqlString += String(bed) + " AND 10";
+    sqlString += " AND num_baths BETWEEN ";
+    sqlString += String(bath) + " AND 10";
+
+
+    console.log("https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" + encodeURI(sqlString));
     return (
       "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" +
       encodeURI(sqlString)
@@ -133,15 +135,16 @@ const filter = () => {
     });
   };
 
+
   const Submit = async () => {
-    // store.dispatch({ type: "updateCommunityCheckbox", payload: community });
+  
+    store.dispatch({ type: "updateCommunityCheckbox", payload: community });
     setAnimation(true);
     try {
-      const response = await axios.get(
-        "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=SELECT%20*%20FROM%20housing"
-      );
-      console.log("this is response.data" + response.data.rows[0].image);
-      // store.dispatch({ type: "updateListOfReviews", payload: response.data });
+      const response = await axios.get(createURL())
+      console.log("this is response.data"+response.data.rows);
+      store.dispatch({ type: "updateListOfReviews", payload: response.data.rows });
+      
     } catch (error) {
       console.error(error);
     } finally {
@@ -163,7 +166,7 @@ const filter = () => {
           mode="outlined"
           color="#4f9deb"
         >
-          <Ionicons name="filter-outline" size={30} color="#4f9deb" />
+          <Ionicons name="filter-outline" size={20} color="#4f9deb" />
           <Text style={styles.buttonText}>Filter</Text>
         </TouchableOpacity>
       </View>
@@ -439,6 +442,7 @@ const styles = StyleSheet.create({
   subHeader: {
     width: "100%",
     backgroundColor: "rgb(247,247,248)",
+    backgroundColor: "rgb(255,255,255)",
   },
   filterButton: {
     flexDirection: "row",
@@ -448,14 +452,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: "#4f9deb",
     paddingHorizontal: 20,
-    marginTop: 10,
     backgroundColor: "rgb(255,255,255)",
   },
   buttonText: {
     justifyContent: "center",
     alignItems: "center",
     color: "#4f9deb",
-    marginTop: 5,
     marginLeft: 5,
   },
   modalBackground: {

@@ -19,12 +19,11 @@ function addon(community_name) {
   return map.get(community_name);
 }
 
-const card = () => {
-  const [objJSON, setobjJSON] = useState(safety);
+const card = (props) => {
 
-  console.log(objJSON[0]);
-  return objJSON.map((route, idx) => (
-    <View style={styles.card} key={idx}>
+  return (
+   
+   <View style={styles.card}>
       <Text
         style={{
           width: 140,
@@ -32,14 +31,14 @@ const card = () => {
           borderWidth: 1,
           paddingVertical: 10,
           textAlign: "center",
-          borderColor: addon(route.community),
+          borderColor: addon(props.community),
           borderRadius: 10,
           fontWeight: "bold",
-          color: addon(route.community),
+          color: addon(props.community),
           marginBottom: 10,
         }}
       >
-        {route.community}
+        {props.community}
       </Text>
       <Image source={{ uri: route.image }} style={styles.image}></Image>
       <View style={styles.border}></View>
@@ -54,17 +53,17 @@ const card = () => {
               paddingVertical: 0,
             }}
           >
-            {route.title}
+            {props.title}
           </Text>
         </View>
 
         <View style={{ display: "flex" }}>
-          <Text style={styles.price}>${route.price}</Text>
+          <Text style={styles.price}>${props.price}</Text>
           <Text style={styles.price_sub}>PER INSTALLMENT/PER PERSON</Text>
         </View>
       </View>
     </View>
-  ));
+  );
 };
 
 export default card;
@@ -81,6 +80,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
     marginVertical: 10,
+    marginLeft: 22,
+    justifyContent: 'center'
   },
 
   border: {
