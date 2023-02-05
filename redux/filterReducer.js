@@ -50,6 +50,14 @@ export default function filterReducer(
   switch(action.type){
     case "updateCommunityCheckbox":
       return newData
+    case "updatePriceMinimum":
+      return newData
+    case "updatePriceMaximum":
+      return newData
+    case "updatebeds":
+      return newData
+    case "update":
+      return newData
     default:
       return prev
   }
