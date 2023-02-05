@@ -103,10 +103,19 @@ const filter = () => {
     sqlString += String(min);
     sqlString += " AND ";
     sqlString += String(max);
-    sqlString += " AND num_beds BETWEEN 0 AND ";
-    sqlString += String(bed);
-    sqlString += " AND num_baths BETWEEN 0 AND ";
-    sqlString += String(bath);
+    sqlString += " AND num_beds BETWEEN ";
+    sqlString += String(bed) + " AND 10";
+    sqlString += " AND num_baths BETWEEN ";
+    sqlString += String(bath) + " AND 10 AND community IN (";
+    let communitiesChecked = [];
+    community_data.forEach(function (dict) {
+      if (dict["checked"] == true) {
+        communitiesChecked.push("'" + dict["name"] + "'");
+      }
+    });
+
+    sqlString += communitiesChecked.join(", ") + ")";
+
     return (
       "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" +
       encodeURI(sqlString)
@@ -246,7 +255,7 @@ const filter = () => {
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <RadioButton value="10" />
+                      <RadioButton value="0" />
                       <Text>Any</Text>
                     </View>
                     <View
@@ -298,7 +307,7 @@ const filter = () => {
                     <View
                       style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                      <RadioButton value="10" />
+                      <RadioButton value="0" />
                       <Text>Any</Text>
                     </View>
                     <View
