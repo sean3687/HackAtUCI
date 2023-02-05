@@ -115,7 +115,10 @@ const filter = () => {
     });
 
     sqlString += communitiesChecked.join(", ") + ")";
-
+    console.log(
+      "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" +
+        encodeURI(sqlString)
+    );
     return (
       "https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=" +
       encodeURI(sqlString)
@@ -159,7 +162,7 @@ const filter = () => {
           color="#4f9deb"
         >
           <Ionicons name="filter-outline" size={30} color="#4f9deb" />
-          <Text style={styles.buttonText}>Open Filter</Text>
+          <Text style={styles.buttonText}>Filter</Text>
         </TouchableOpacity>
       </View>
 

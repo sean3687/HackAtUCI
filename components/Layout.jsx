@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { Ionicons } from "@expo/vector-icons";
-import Cardlist from"./card"
+import Cardlist from "./card";
 
 const API_KEY =
   "pk.eyJ1Ijoic3ViaW5raW0zMjUiLCJhIjoiY2xkcHV4cjY3MDhzeDN2bGk2aDU5MjI0YSJ9.IjUdEKU69OMBCD0lSyUgiA";
@@ -76,12 +76,16 @@ const Layout = ({ children, header, footer }) => {
         <Text style={styles.headerText}>{header}</Text>
       </SafeAreaView>
       <View style={styles.contentContainer}>
-        <ScrollView style={styles.content} contentContainerStyle={{ alignItems: 'center' }}>{children}
-          <Cardlist/>
-          <Cardlist/>
-          <Cardlist/>
-          <Cardlist/>
-          <Cardlist/>
+        <ScrollView
+          style={styles.content}
+          contentContainerStyle={{ alignItems: "center" }}
+        >
+          {children}
+          <Cardlist />
+          <Cardlist />
+          <Cardlist />
+          <Cardlist />
+          <Cardlist />
         </ScrollView>
       </View>
       <SafeAreaView style={styles.footer}>
@@ -90,11 +94,7 @@ const Layout = ({ children, header, footer }) => {
           onPress={() => setModalVisible(!modalVisible)}
         >
           <Ionicons name="map-outline" size={20} color="#4f9deb" style={{}} />
-          <Text
-            style={styles.footerMapText}
-          >
-            Maps
-          </Text>
+          <Text style={styles.footerMapText}>Maps</Text>
         </TouchableOpacity>
         <Modal
           style={styles.modal}
@@ -104,35 +104,40 @@ const Layout = ({ children, header, footer }) => {
           onRequestClose={() => setModalVisible(false)}
         >
           <SafeAreaView>
-          <View style={styles.modalContainer}>
-            <View style={styles.headerContainer}>
-              <Text style={styles.title}>ACC Apt.</Text>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Ionicons style={{}}name="close-outline" size={30} color="black" />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.mapContainer}>
-              <MapView
-                style={styles.map}
-                initialRegion={{
-                  latitude: 33.643822263786646,
-                  longitude: -117.82784360225071,
-                  latitudeDelta: 0.02,
-                  longitudeDelta: 0.02,
-                }}
-                accessToken={API_KEY}
-              >
-                {markers.map((marker) => (
-                  <Marker
-                    key={marker.title}
-                    coordinate={marker.coordinate}
-                    title={marker.title}
-                    description={marker.description}
+            <View style={styles.modalContainer}>
+              <View style={styles.headerContainer}>
+                <Text style={styles.title}>ACC Apartments</Text>
+                <TouchableOpacity onPress={() => setModalVisible(false)}>
+                  <Ionicons
+                    style={{}}
+                    name="close-outline"
+                    size={30}
+                    color="black"
                   />
-                ))}
-              </MapView>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.mapContainer}>
+                <MapView
+                  style={styles.map}
+                  initialRegion={{
+                    latitude: 33.643822263786646,
+                    longitude: -117.82784360225071,
+                    latitudeDelta: 0.02,
+                    longitudeDelta: 0.02,
+                  }}
+                  accessToken={API_KEY}
+                >
+                  {markers.map((marker) => (
+                    <Marker
+                      key={marker.title}
+                      coordinate={marker.coordinate}
+                      title={marker.title}
+                      description={marker.description}
+                    />
+                  ))}
+                </MapView>
+              </View>
             </View>
-          </View>
           </SafeAreaView>
         </Modal>
       </SafeAreaView>
@@ -157,29 +162,27 @@ const styles = StyleSheet.create({
     fontSize: 45,
     fontWeight: "bold",
   },
-  footerMap:{
-      flexDirection: "row",
-      justifyContent: "center",
-      color: "#4f9deb",
-      padding: 10,
-      borderWidth: 1,
-      borderRadius: 20,
-      borderColor: "#4f9deb",
-      paddingHorizontal:30
-  
+  footerMap: {
+    flexDirection: "row",
+    justifyContent: "center",
+    color: "#4f9deb",
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: "#4f9deb",
+    paddingHorizontal: 30,
   },
-  footerMapText:{
-      justifyContent: "center",
-      alignItems: "center",
-      color: "#4f9deb",
-      marginTop: 2 ,
-      marginLeft: 5,
+  footerMapText: {
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#4f9deb",
+    marginTop: 2,
+    marginLeft: 5,
   },
 
-  modalContainer:{
-    height:'100%',
-    bottom:0,
-    
+  modalContainer: {
+    height: "100%",
+    bottom: 0,
   },
   headerContainer: {
     height: "10%",
@@ -191,7 +194,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  title:{
+  title: {
     alignItems: "center",
     color: "#2a2a33",
     fontSize: 28,
@@ -205,14 +208,12 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    
   },
   content: {
-    display:"flex",
-    flexDirection:"column",
-    width:"100%",
-    backgroundColor:'rgb(247,247,248)'
-    
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    backgroundColor: "rgb(247,247,248)",
   },
   footer: {
     height: 100,
