@@ -111,12 +111,12 @@ const filter = () => {
   
  
   const Submit = async () => {
-    store.dispatch({ type: "updateCommunityCheckbox", payload: community });
+    // store.dispatch({ type: "updateCommunityCheckbox", payload: community });
     setAnimation(true);
     try {
       const response = await axios.get("https://hack-at-uci-backend-maithyy.vercel.app/api/db?query=SELECT%20*%20FROM%20housing")
-      console.log(response.data["rows"]);
-      store.dispatch({ type: "updateListOfReviews", payload: response.data });
+      console.log("this is response.data"+response.data.rows[0].image);
+      // store.dispatch({ type: "updateListOfReviews", payload: response.data });
       
     }
     catch(error) {
